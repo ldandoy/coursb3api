@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan  = require('morgan');
+const apiRoutes = require('./routes/api');
 
 const PORT = 4500;
 
@@ -11,6 +12,8 @@ server.use(morgan('dev'));
 server.get('/', function(req, res, next) {
 	res.status(200).send("It works !");
 });
+
+server.use('/api', apiRoutes);
 
 // http://localhost:4500/ece/helloworld
 server.get('/ece/helloworld', (req, res, next) => {
