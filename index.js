@@ -1,21 +1,22 @@
 const express = require('express');
+const morgan  = require('morgan');
 
 const PORT = 4500;
 
 const server = express();
 
-// Root par default
+server.use(morgan('dev'));
+
+// Root par default: http://localhost:4500/
 server.get('/', function(req, res, next) {
 	res.status(200).send("It works !");
 });
 
-// /api/product
-server.get('/api/product', (req, res, next) => {
-	res.status(200).send("API - products !");
+// http://localhost:4500/ece/helloworld
+server.get('/ece/helloworld', (req, res, next) => {
+	res.status(200).send("<h1>Hello world !</h1>")
 });
 
 server.listen(PORT, function() {
 	console.log('Server is running on localhost:' + PORT);
 });
-
-// localhost:4500/ece/helloworld
