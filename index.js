@@ -1,5 +1,7 @@
-const express = require('express');
-const morgan  = require('morgan');
+const express 		= require('express');
+const morgan  		= require('morgan');
+const bodyParser	= require('body-parser');
+
 const apiRoutes = require('./routes/api');
 
 const PORT = 4500;
@@ -7,7 +9,9 @@ const PORT = 4500;
 const server = express();
 
 // Ajout des log via le module morgan
+server.use(express.urlencoded({extended: false}));
 server.use(morgan('dev'));
+server.use(bodyParser.json());
 
 // Root par default: http://localhost:4500/
 server.get('/', function(req, res, next) {
