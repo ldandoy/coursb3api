@@ -1,0 +1,11 @@
+Créer une route post /outils/calculc
+
+=> elle prend une variable lettre, 
+et elle dit combien de fois la lettre apparait dans la
+phrase "le chemin vers la soleil levant"
+
+-> Nouveau controleur (route)
+-> Intégre cette route à votre serveur (index.js)
+-> Récupérer la valeur de la lettre
+-> chercher le nombre de fois ou la lettre apparait
+-> renvoyer ce nombre

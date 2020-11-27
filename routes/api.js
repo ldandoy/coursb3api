@@ -32,6 +32,7 @@ Router.post("/product", (req, res, next) => {
     
     let array = ["Citron", "Banane"];
 
+    // Ajout un élément au tableau array
     array.push(req.body.fruit);
 
     res.status(200).json(array);
