@@ -4,8 +4,13 @@ Créer une route post /outils/calculc
 et elle dit combien de fois la lettre apparait dans la
 phrase "le chemin vers la soleil levant"
 
--> Nouveau controleur (route)
--> Intégre cette route à votre serveur (index.js)
--> Récupérer la valeur de la lettre
--> chercher le nombre de fois ou la lettre apparait
--> renvoyer ce nombre
+x Nouveau controleur (route)
+x Intégre cette route à votre serveur (index.js)
+x Récupérer la valeur de la lettre
+x chercher le nombre de fois ou la lettre apparait
+x renvoyer ce nombre
+
+Créer uen route post /outils/leplusgranddesdeux
+
+=> elle prend en paramètre deux nombres et renvoi
+le plus grand de deux.

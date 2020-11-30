@@ -3,6 +3,7 @@ const morgan  		= require('morgan');
 const bodyParser	= require('body-parser');
 
 const apiRoutes = require('./routes/api');
+const outilsRoutes = require('./routes/outils');
 
 const PORT = 4500;
 
@@ -20,6 +21,7 @@ server.get('/', function(req, res, next) {
 
 // Ajout du module apiRoutes
 server.use('/api', apiRoutes);
+server.use('/outils', outilsRoutes);
 
 // http://localhost:4500/ece/helloworld
 server.get('/ece/helloworld', (req, res, next) => {
