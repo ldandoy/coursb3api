@@ -34,4 +34,17 @@ Router.post('/leplusgranddesdeux', (req, res, next) => {
     }
 });
 
+// http://localhost:4500/outils/lespremierssontlesderniers
+Router.post('/lespremierssontlesderniers', (req, res, next) => {
+    let tab = [];
+
+    tab.push(parseInt(req.body.nb1));
+    tab.push(parseInt(req.body.nb2));
+    tab.push(parseInt(req.body.nb3));
+    tab.push(parseInt(req.body.nb4));
+    tab.push(parseInt(req.body.nb5));
+
+    res.status(200).json(tab.sort(function(a, b){return b-a}));
+});
+
 module.exports = Router;
