@@ -17,3 +17,10 @@ Créer uen route post /outils/leplusgranddesdeux
 
 => elle prend en paramètre deux nombres et renvoi
 le plus grand de deux.
+
+
+------------------------------------------------------
+Créer uen route post /outils/lespremierssontlesderniers
+
+=> elle demande 5 chiffres et les renvoient en dans 
+l'ordre décroissant (utilisez une fonction)

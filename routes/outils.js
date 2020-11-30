@@ -20,4 +20,18 @@ Router.post('/calculc', (req, res, next) => {
     res.status(200).json(nbre_de_fois_trouve);
 });
 
+// http://localhost:4500/outils/leplusgranddesdeux
+Router.post('/leplusgranddesdeux', (req, res, next) => {
+    let nb1 = parseInt(req.body.nb1);
+    let nb2 = parseInt(req.body.nb2);
+
+    if ( nb1 > nb2) {
+        res.status(200).json(nb1 + " est le plus grand");
+    } else if (nb1 < nb2) {
+        res.status(200).json(nb2 + " est le plus grand");
+    } else {
+        res.status(200).json("Les deux nombres sont égaux");
+    }
+});
+
 module.exports = Router;
