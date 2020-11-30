@@ -10,6 +10,9 @@ x Récupérer la valeur de la lettre
 x chercher le nombre de fois ou la lettre apparait
 x renvoyer ce nombre
 
+
+----------------------------------------------------
+
 Créer uen route post /outils/leplusgranddesdeux
 
 => elle prend en paramètre deux nombres et renvoi
