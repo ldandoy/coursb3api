@@ -21,6 +21,8 @@ Router.get('/connect', (req, res, next) => {
             db.once('open', function() {
                 console.log("Connected !")
             });
+
+            res.status('200').json('Connected !')
         } catch (error) {
             console.log(error)
             process.exit(1)
