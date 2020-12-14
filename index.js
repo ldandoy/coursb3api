@@ -32,5 +32,5 @@ server.get('/ece/helloworld', (req, res, next) => {
 
 // Démarrage du serveur
 server.listen(PORT, function() {
-	console.log('Server is running on localhost:' + PORT);
+	console.log('Server is running on http://localhost:' + PORT);
 });
