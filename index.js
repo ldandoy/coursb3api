@@ -1,6 +1,24 @@
 const express 		= require('express');
 const morgan  		= require('morgan');
 const bodyParser	= require('body-parser');
+const mongoose		= require('mongoose');
+
+try {
+	mongoose.connect('mongodb+srv://test-b3:test-b3@cluster0.yvbdp.mongodb.net/test-b3?retryWrites=true&w=majority', {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false
+	});
+
+	const db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function() {
+		console.log("Connected !");
+	});
+} catch (error) {
+	console.log(error);
+	process.exit(1);
+}
 
 const apiRoutes = require('./routes/api');
 const outilsRoutes = require('./routes/outils');

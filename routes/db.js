@@ -9,7 +9,31 @@ const Router = express.Router();
 
 const todoModel = require('../models/todo');
 
-// http://localhost:4500/db/connect
+// GET: http://localhost:4500/db/todos
+Router.get('/todos', (req, res, next) => {
+    todoModel.find()
+    .then(todos => {
+        res.status('200').json(todos);
+    })
+});
+
+// POST: http://localhost:4500/db/todos
+Router.post('/todos', (req, res, next) => {
+    const todo = new todoModel({
+        sujet: req.body.sujet,
+        description: req.body.description
+    });
+
+    todo.save()
+    .then(todo => {
+        res.status('200').json(todo);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+});
+
+// GET: http://localhost:4500/db/connect
 Router.get('/connect', (req, res, next) => {
     try {
         mongoose.connect('mongodb+srv://test-b3:test-b3@cluster0.yvbdp.mongodb.net/test-b3?retryWrites=true&w=majority', {
@@ -35,6 +59,7 @@ Router.get('/connect', (req, res, next) => {
             .catch(err => {
                 console.log(err);
             });
+
         });
 
         res.status('200').json('Connected !');
