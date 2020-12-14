@@ -15,6 +15,10 @@ Router.get('/todos', (req, res, next) => {
     .then(todos => {
         res.status('200').json(todos);
     })
+    .catch(err => {
+        console.log(err);
+        res.status('500').json({"message": err});
+    });
 });
 
 // POST: http://localhost:4500/db/todos
@@ -30,44 +34,58 @@ Router.post('/todos', (req, res, next) => {
     })
     .catch(err => {
         console.log(err);
+        res.status('500').json({"message": err});
     });
 });
 
-// GET: http://localhost:4500/db/connect
-Router.get('/connect', (req, res, next) => {
-    try {
-        mongoose.connect('mongodb+srv://test-b3:test-b3@cluster0.yvbdp.mongodb.net/test-b3?retryWrites=true&w=majority', {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            useFindAndModify: false
-        });
-
-        const db = mongoose.connection;
-        db.on('error', console.error.bind(console, 'connection error:'));
-        db.once('open', function() {
-            console.log("Connected !");
-
-            const todo = new todoModel({
-                sujet: "Todo 1",
-                description: "Description todo 1"
-            });
-
-            todo.save()
-            .then(result => {
-                console.log(result);
-            })
-            .catch(err => {
-                console.log(err);
-            });
-
-        });
-
-        res.status('200').json('Connected !');
-    } catch (error) {
-        console.log(error);
-        process.exit(1)
-    }
+// GET : http://localhost:4500/db/todos/{todoId}
+Router.get('/todos/:todoId', (req, res, next) => {
+    todoModel.findOne({
+        "_id": req.params.todoId
+    })
+    .then(todos => {
+        res.status('200').json(todos);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status('500').json({"message": err});
+    });
 });
+
+// DELETE: http://localhost:4500/db/todos/{todoId}
+Router.delete('/todos/:todoId', (req, res, next) => {
+    todoModel.remove({
+        "_id": req.params.todoId
+    })
+    .exec()
+    .then(result => {
+        res.status('200').json({"message": "Todo bien supprimée !"});
+    })
+    .catch(err => {
+        console.log(err);
+        res.status('500').json({"message": err});
+    });
+});
+
+// PATCH: http://localhost:4500/db/todos/{todoId}
+Router.patch('/todos/:todoId', (req, res, next) => {
+    todoModel.update({
+        "_id": req.params.todoId
+    },{
+        $set: {
+            "sujet": req.body.sujet,
+            "description": req.body.description,
+        }
+    })
+    .exec()
+    .then(todo => {
+        res.status('200').json(todo);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status('500').json({"message": err});
+    });
+})
 
 // Export du module pour pouvoir l'intégrer dans le require
 module.exports = Router;
