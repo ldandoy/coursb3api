@@ -23,6 +23,8 @@ try {
 const apiRoutes = require('./routes/api');
 const outilsRoutes = require('./routes/outils');
 const dbRoutes = require('./routes/db');
+const dstRoutes = require('./routes/dst');
+const userRoutes = require('./routes/user');
 
 const PORT = 4500;
 
@@ -42,6 +44,8 @@ server.get('/', function(req, res, next) {
 server.use('/api', apiRoutes);
 server.use('/outils', outilsRoutes);
 server.use('/db/', dbRoutes);
+server.use('/dst', dstRoutes);
+server.use('/user', userRoutes);
 
 // http://localhost:4500/ece/helloworld
 server.get('/ece/helloworld', (req, res, next) => {
